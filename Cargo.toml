@@ -1,0 +1,9 @@
+[package]
+name = "sdl-gamedev"
+version = "0.1.0"
+authors = ["Nahuel Jesús Sacchetti <nahueljsacchetti@gmail.com>"]
+
+[dependencies]
+
+[dependencies.sdl2]
+version = "0.31"
