@@ -5,23 +5,23 @@ use sdl2::event::Event;
 use sdl2::keyboard::Keycode;
 use std::time::Duration;
 
-fn main() {
-    let sdl_context = sdl2::init().unwrap();
-    let video_subsystem = sdl_context.video().unwrap();
-    let window = video_subsystem.window("Rust SDL Demo", 640, 480)
-        .position_centered()
-        .build()
-        .unwrap();
+mod core;
 
-    let mut canvas = window.into_canvas()
-        .build()
-        .unwrap();
+use core::window;
+
+const GAME_TITLE: &str = "Sdl2 Rust Test";
+const WINDOW_HEIGHT: u32 = 480;
+const WINDOW_WIDTH: u32 = 640;
+
+fn main() {
+    let window = window::new(GAME_TITLE, WINDOW_WIDTH, WINDOW_HEIGHT);
+    let mut canvas = window.frame.into_canvas().build().unwrap();
 
     canvas.set_draw_color(Color::RGB(0, 255, 255));
     canvas.clear();
     canvas.present();
 
-    let mut event_pump = sdl_context.event_pump().unwrap();
+    let mut event_pump = window.context.event_pump().unwrap();
     let mut i = 0;
 
     'running: loop {
